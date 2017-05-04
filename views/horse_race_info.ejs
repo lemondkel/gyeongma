@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>horse_info</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/stylesheets/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="/stylesheets/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="/stylesheets/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/stylesheets/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Social Buttons CSS -->
+    <link href="/stylesheets/bootstrap-social.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<%
+var dataPgdate = date.toString();
+var dataYear = date.substring(0, 4);
+var dataMonth = date.substring(4, 6);
+var dataDay = date.substring(6, 8);
+
+var date = dataYear + "-" + dataMonth + "-" + dataDay;
+var meetName;
+
+if(meet == 1)
+    meetName = "서울";
+else if(meet == 2)
+    meetName = "제주";
+else
+    meetName = "부산";
+
+%>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <% include common/navigation.ejs %>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">경주정보</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        경주정보
+                    </div>
+                    <!-- /.panel-heading -->
+                    <form role="form">
+                        <div class="form-group has-success">
+                            <label class="control-label" for="inputSuccess">시행날짜</label>
+                            <input type="text" class="form-control" id="inputSuccess" value="<%=date%>" readonly="readonly">
+                        </div>
+                        <div class="form-group has-warning">
+                            <label class="control-label" for="inputWarning">시행경마장명</label>
+                            <input type="text" class="form-control" id="inputWarning" value="<%=meetName%>" readonly="readonly">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" for="inputError">경주번호</label>
+                            <input type="text" class="form-control" id="inputError" value="<%=matchNo%>" readonly="readonly">
+                        </div>
+                    </form>
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="horseRaceInfo">
+                            <thead>
+                            <tr>
+                                <th>순위</th>
+                                <th>출주번호</th>
+                                <th>마명</th>
+                                <th>기수명</th>
+                                <th>조교사명</th>
+                                <th>마주명</th>
+                                <th>경주기록</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                       마필 구간별 최고/최저/평균기록
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="horseScoreBoard">
+                                <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>마번</th>
+                                    <th>마명</th>
+                                    <th>기록조회</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <!--팝업 -->
+        <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">경주기록조회</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-line-chart"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="/javascripts/jquery-3.2.1.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/javascripts/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/javascripts/metisMenu.min.js"></script>
+
+<script src="/javascripts/jquery.dataTables.min.js"></script>
+<script src="/javascripts/dataTables.bootstrap.min.js"></script>
+<script src="/javascripts/dataTables.responsive.js"></script>
+
+<!-- Flot Charts JavaScript -->
+<script src="/javascripts/excanvas.min.js"></script>
+<script src="/javascripts/jquery.flot.js"></script>
+<script src="/javascripts/jquery.flot.resize.js"></script>
+<script src="/javascripts/jquery.flot.time.js"></script>
+<script src="/javascripts/jquery.flot.tooltip.min.js"></script>
+<script src="/javascripts/flot-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/javascripts/sb-admin-2.js"></script>
+<script src="/javascripts/horse_race_info.js"></script>
+
+</body>
+
+</html>
