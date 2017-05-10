@@ -37,7 +37,8 @@ router.get('/', function (req, res, next) {
 });
 
 cron.schedule('* * 4 * *', function () {
-    console.log('[schedule]', 'starting a task every minute / ' + new Date());
+    console.log('[schedule]', 'starting a task every day / ' + new Date());
+
     rcDateArr = [];
     dataDateArr = [];
     meetArr = [];
@@ -48,6 +49,8 @@ cron.schedule('* * 4 * *', function () {
     rcDistArr = [];
 
     ajaxFunction_schedule();
+
+    console.log('[schedule]', 'ending a task every day / ' + new Date());
 });
 
 function ajaxFunction_schedule() {
@@ -157,8 +160,6 @@ function ajaxFunction_schedule() {
                         rcDistArr.push(rcDist);
                         rcNoArr.push(rcNo);
                         rankArr.push(rank);
-
-                        console.log('[schedule]', 'ending a task every minute / ' + new Date());
                     }
                 });
             });

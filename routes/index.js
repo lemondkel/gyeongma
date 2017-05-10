@@ -32,7 +32,8 @@ router.get('/', function (req, res, next) {
 });
 
 cron.schedule('* * 4 * *', function () {
-    console.log('[index]', 'starting a task every minute / ' + new Date());
+    console.log('[index]', 'starting a task every day / ' + new Date());
+
     dataDateArr = [];
     rcNameArr = [];
     rcGradeArr = [];
@@ -40,6 +41,8 @@ cron.schedule('* * 4 * *', function () {
     meetArr = [];
 
     ajaxFunction_index();
+
+    console.log('[index]', 'ending a task every day / ' + new Date());
 });
 
 function ajaxFunction_index() {
