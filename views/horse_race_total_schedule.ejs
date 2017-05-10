@@ -14,8 +14,8 @@
     <link href="/stylesheets/dataTables.responsive.css" rel="stylesheet">
     <link href="/stylesheets/sb-admin-2.css" rel="stylesheet">
     <link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="/javascripts/html5shiv.js"></script>
+    <script src="/javascripts/respond.min.js"></script>
 </head>
 <body>
 
@@ -61,4 +61,44 @@
 <script src="/javascripts/dataTables.responsive.js"></script>
 <script src="/javascripts/sb-admin-2.js"></script>
 <script src="/javascripts/horse_race_total_schedule.js"></script>
+<script>
+    var dataDateArr = '<%= dataDateArr %>';
+    var meetArr = '<%= meetArr %>';
+    var rcNoArr = '<%= rcNoArr %>';
+    var meetTypeArr = '<%= meetTypeArr %>';
+    var rcDateArr = '<%= rcDateArr %>';
+    var rcNameArr = '<%= rcNameArr %>';
+    var rankArr = '<%= rankArr %>';
+    var rcDistArr = '<%= rcDistArr %>';
+
+    dataDateArr = dataDateArr.split(',');
+    meetArr = meetArr.split(',');
+    rcNoArr = rcNoArr.split(',');
+    meetTypeArr = meetTypeArr.split(',');
+    rcDateArr = rcDateArr.split(',');
+    rcNameArr = rcNameArr.split(',');
+    rankArr = rankArr.split(',');
+    rcDistArr = rcDistArr.split(',');
+
+    for (var i = 0; i < dataDateArr.length; i++) {
+        var html = "";
+
+        html += '<tr class="gradeX">';
+        html += '<td data-target=' + rcDateArr[i] + '>' + dataDateArr[i] + '</td>';
+        html += '<td>' + meetArr[i] + '</td>';
+        html += '<td>' + rcNoArr[i] + '</td>';
+        html += '<td>' + '<a href="../horseRaceInfo?meet=' + meetTypeArr[i]
+            + "&date=" + dataDateArr[i] + "&matchNo=" + rcNoArr[i] +  '">'
+            + rcNameArr[i] + '(경주번호:' + rcNoArr[i] + ')' + '</a>' + '</td>';
+        html += '<td>' + rankArr[i] + '</td>';
+        html += '<td>' + rcDistArr[i] + '</td>';
+        html += '</tr>';
+
+        $('#totalSchedule').children('tbody').append(html);
+    }
+
+    $('#totalSchedule').DataTable({
+        responsive: true
+    });
+</script>
 </html>
