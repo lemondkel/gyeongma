@@ -14,6 +14,7 @@ var horseJockey = require('./routes/horseJockey');
 var horseInfo = require('./routes/horseInfo');
 var horseInfoTotal = require('./routes/horseInfoTotal');
 var horseRaceInfo = require('./routes/horseRaceInfo');
+var cron = require('node-cron');
 
 var app = express();
 
