@@ -474,6 +474,11 @@ table.dataTable thead .sorting:after {
   color: #fff;;
   font-weight: 700;
 }
+.table-striped>tbody>tr:nth-of-type(1){
+  background-color: goldenrod !important;
+  color: #fff;;
+  font-weight: 700;
+}
 @media screen and (max-width: 767px) {
   label{
     width: 100%;
