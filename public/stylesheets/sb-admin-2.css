@@ -441,7 +441,7 @@ table.dataTable thead .sorting:after {
   margin-bottom: 0;
 }
 .nav-pills>li{
-  width: 50%;
+  width: calc(100% / 3);
 }
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
   background-color: transparent;
