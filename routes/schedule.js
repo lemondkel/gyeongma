@@ -16,6 +16,8 @@ var rcNameArr = [];
 var rankArr = [];
 var rcDistArr = [];
 
+ajaxFunction_schedule();
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
@@ -62,7 +64,6 @@ function ajaxFunction_schedule() {
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
-        console.log('Reponse received');
 
         parser.parseString(body, function (err, result) {
             // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
@@ -98,7 +99,6 @@ function ajaxFunction_schedule() {
             method: "GET",
             dataType: "json"
         }, function (error, response, body) {
-            console.log('Reponse received!');
 
             parser.parseString(body, function (err, result) {
                 // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
@@ -109,7 +109,7 @@ function ajaxFunction_schedule() {
                     var dataDay = rcDate.substring(6, 8);
                     var dataDate = dataYear + "-" + dataMonth + "-" + dataDay;
 
-                    var meetType = 1;
+                    var meetType = 2;
                     var meet = result.response.body[0].items[0].item[i].meet;
                     var rcName = result.response.body[0].items[0].item[i].rcName;
                     var rcDist = result.response.body[0].items[0].item[i].rcDist;
@@ -134,7 +134,7 @@ function ajaxFunction_schedule() {
                 method: "GET",
                 dataType: "json"
             }, function (error, response, body) {
-                console.log('Reponse received!');
+                console.log('[경주(전체)] 송신 성공!');
 
                 parser.parseString(body, function (err, result) {
                     // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
@@ -145,7 +145,7 @@ function ajaxFunction_schedule() {
                         var dataDay = rcDate.substring(6, 8);
                         var dataDate = dataYear + "-" + dataMonth + "-" + dataDay;
 
-                        var meetType = 1;
+                        var meetType = 3;
                         var meet = result.response.body[0].items[0].item[i].meet;
                         var rcName = result.response.body[0].items[0].item[i].rcName;
                         var rcDist = result.response.body[0].items[0].item[i].rcDist;

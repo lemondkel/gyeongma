@@ -14,6 +14,8 @@ var ageArr = [];
 var rcCntTArr = [];
 var ord1CntTArr = [];
 
+ajaxFunction_jockey();
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     if (jkNameArr.length === 0) {
@@ -53,7 +55,6 @@ function ajaxFunction_jockey() {
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
-        console.log('Reponse received', body);
 
         parser.parseString(body, function (err, result) {
             // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
@@ -81,7 +82,6 @@ function ajaxFunction_jockey() {
             method: "GET",
             dataType: "json"
         }, function (error, response, body) {
-            console.log('Reponse received', body);
 
             parser.parseString(body, function (err, result) {
                 // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
@@ -109,7 +109,7 @@ function ajaxFunction_jockey() {
                 method: "GET",
                 dataType: "json"
             }, function (error, response, body) {
-                console.log('Reponse received', body);
+                console.log('[기수] 송신 성공!');
 
                 parser.parseString(body, function (err, result) {
                     // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));

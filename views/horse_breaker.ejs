@@ -39,7 +39,7 @@
                                 <th>조교사번호</th>
                                 <th>조교사명</th>
                                 <th>소속조</th>
-                                <th>나이</th>
+                                <!--<th>나이</th>-->
                                 <th>통산출주횟수</th>
                                 <th>통산1위횟수</th>
                             </tr>
@@ -59,8 +59,15 @@
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/metisMenu.min.js"></script>
 <script src="/javascripts/sb-admin-2.js"></script>
-<script src="/javascripts/horse_breaker.js"></script>
 <script src="/javascripts/jquery.dataTables.min.js"></script>
 <script src="/javascripts/dataTables.bootstrap.min.js"></script>
 <script src="/javascripts/dataTables.responsive.js"></script>
+<script>
+    var trNoArr = '<%= trNoArr %>';
+    var trNameArr = '<%= trNameArr %>';
+    var partArr = '<%= partArr %>';
+    var rcCntTArr = '<%= rcCntTArr %>';
+    var ord1CntTArr = '<%= ord1CntTArr %>';
+</script>
+<script src="/javascripts/horse_breaker.js"></script>
 </html>

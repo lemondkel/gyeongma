@@ -1,68 +1,27 @@
-$(function () {
+hrNoArr = hrNoArr.split(',');
+hrNameArr = hrNameArr.split(',');
+countryArr = countryArr.split(',');
+sexArr = sexArr.split(',');
+rcCntTArr = rcCntTArr.split(',');
+rankArr = rankArr.split(',');
+ratingArr = ratingArr.split(',');
 
-    var data = [];
+for (var i = 0; i < hrNameArr.length; i++) {
+    var html = "";
 
-    var url = '	http://kradata.kra.co.kr:8082/service/api8/getOpenDataList';
-    var serviceKey = 'E3E472B8DAC71C17535647AF33238C57B4B310E5476B6F177EC37132666C3F';
-    var meet = 1;
-    $.ajax({
-        url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet,
-        dataType: "json"
-    })
-        .done(function (response) {
+    html += '<tr class="gradeX">';
+    html += '<td>' + hrNoArr[i] + '</td>';
+    html += '<td>' + hrNameArr[i] + '</td>';
+    html += '<td>' + countryArr[i] + '</td>';
+    html += '<td>' + sexArr[i] + '</td>';
+    html += '<td>' + rcCntTArr[i] + '</td>';
+    html += '<td>' + rankArr[i] + '</td>';
+    html += '<td>' + ratingArr[i] + '</td>';
+    html += "</tr>";
 
-            for (var i = 0; i < response.response.body.items.item.length; i++) {
-                data.push(response.response.body.items.item[i]);
-            }
+    $("#horseInfoTotal").append(html);
+}
 
-            meet = 2;
-            $.ajax({
-                url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet,
-                dataType: "json"
-            })
-                .done(function (response) {
-
-                    for (var i = 0; i < response.response.body.items.item.length; i++) {
-                        data.push(response.response.body.items.item[i]);
-                    }
-                    meet = 3;
-                    $.ajax({
-                        url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet,
-                        dataType: "json"
-                    })
-                        .done(function (response) {
-
-                            for (var i = 0; i < response.response.body.items.item.length; i++) {
-                                data.push(response.response.body.items.item[i]);
-                            }
-
-                            data.sort(function (obj1, obj2) {
-                                return obj1.hrName < obj2.hrName ?  -1
-                                    : (obj1.hrName > obj2.hrName ? 1 : 0);
-                            });
-
-                            for (var i = 0; i < data.length; i++) {
-                                var html = "";
-
-                                html += '<tr class="gradeX">';
-                                html += '<td>' + data[i].hrNo + '</td>';
-                                html += '<td>' + data[i].hrName + '</td>';
-                                html += '<td>' + data[i].name + '</td>';
-                                html += '<td>' + data[i].sex + '</td>';
-                                html += '<td>' + data[i].rcCntT + '</td>';
-                                html += '<td>' + data[i].rank + '</td>';
-                                html += '<td>' + data[i].rating + '</td>';
-                                html += "</tr>";
-
-                                $("#horseInfoTotal").append(html);
-                            }
-
-                            $('#horseInfoTotal').DataTable({
-                                responsive: true
-                            });
-
-                        });
-                });
-        });
-
+$('#horseInfoTotal').DataTable({
+    responsive: true
 });

@@ -11,6 +11,8 @@ var dataAddressArr = [];
 var bsshNmArr = [];
 var homepageArr = [];
 
+ajaxFunction_riding();
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     if (dataAddressArr.length === 0) {
@@ -43,7 +45,7 @@ function ajaxFunction_riding() {
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
-        console.log('Reponse received', body);
+        console.log('[승마장] 송신 성공!');
 
         parser.parseString(body, function (err, result) {
             // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));

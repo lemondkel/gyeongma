@@ -16,7 +16,7 @@ for (var i = 0; i < dataDateArr.length; i++) {
     html += '<td>' + meetArr[i] + '</td>';
     html += '<td>' + rcNoArr[i] + '</td>';
     html += '<td>' + '<a href="../horseRaceInfo?meet=' + meetTypeArr[i]
-        + "&date=" + dataDateArr[i] + "&matchNo=" + rcNoArr[i] +  '">'
+        + "&date=" + rcDateArr[i] + "&matchNo=" + rcNoArr[i] +  '">'
         + rcNameArr[i] + '(경주번호:' + rcNoArr[i] + ')' + '</a>' + '</td>';
     html += '<td>' + rankArr[i] + '</td>';
     html += '<td>' + rcDistArr[i] + '</td>';
