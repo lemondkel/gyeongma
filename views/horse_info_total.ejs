@@ -19,6 +19,14 @@
 </head>
 
 <body>
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState === "complete") {
+            $('.loading-bar').hide();
+        }
+    }
+</script>
+<div class="loading-bar"></div>
 
 <div id="wrapper">
     <% include common/navigation.ejs %>
@@ -63,13 +71,29 @@
 <script src="/javascripts/dataTables.responsive.js"></script>
 <script src="/javascripts/sb-admin-2.js"></script>
 <script>
-    var hrNoArr = '<%= hrNoArr %>';
-    var hrNameArr = '<%= hrNameArr %>';
-    var countryArr = '<%= countryArr %>';
-    var sexArr = '<%= sexArr %>';
-    var rcCntTArr = '<%= rcCntTArr %>';
-    var rankArr = '<%= rankArr %>';
-    var ratingArr = '<%= ratingArr %>';
+    var hrNoArrBySeoul = JSON.parse('<%- hrNoArrBySeoul %>');
+    var hrNameArrBySeoul = JSON.parse('<%- hrNameArrBySeoul %>');
+    var countryArrBySeoul = JSON.parse('<%- countryArrBySeoul %>');
+    var sexArrBySeoul = JSON.parse('<%- sexArrBySeoul %>');
+    var rcCntTArrBySeoul = JSON.parse('<%- rcCntTArrBySeoul %>');
+    var rankArrBySeoul = JSON.parse('<%- rankArrBySeoul %>');
+    var ratingArrBySeoul = JSON.parse('<%- ratingArrBySeoul %>');
+
+    var hrNoArrByBusan = JSON.parse('<%- hrNoArrByBusan %>');
+    var hrNameArrByBusan = JSON.parse('<%- hrNameArrByBusan %>');
+    var countryArrByBusan = JSON.parse('<%- countryArrByBusan %>');
+    var sexArrByBusan = JSON.parse('<%- sexArrByBusan %>');
+    var rcCntTArrByBusan = JSON.parse('<%- rcCntTArrByBusan %>');
+    var rankArrByBusan = JSON.parse('<%- rankArrByBusan %>');
+    var ratingArrByBusan = JSON.parse('<%- ratingArrByBusan %>');
+
+    var hrNoArrByJeju = JSON.parse('<%- hrNoArrByJeju %>');
+    var hrNameArrByJeju = JSON.parse('<%- hrNameArrByJeju %>');
+    var countryArrByJeju = JSON.parse('<%- countryArrByJeju %>');
+    var sexArrByJeju = JSON.parse('<%- sexArrByJeju %>');
+    var rcCntTArrByJeju = JSON.parse('<%- rcCntTArrByJeju %>');
+    var rankArrByJeju = JSON.parse('<%- rankArrByJeju %>');
+    var ratingArrByJeju = JSON.parse('<%- ratingArrByJeju %>');
 </script>
 <script src="/javascripts/horse_info_total.js"></script>
 </html>

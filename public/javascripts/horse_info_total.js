@@ -1,22 +1,14 @@
-hrNoArr = hrNoArr.split(',');
-hrNameArr = hrNameArr.split(',');
-countryArr = countryArr.split(',');
-sexArr = sexArr.split(',');
-rcCntTArr = rcCntTArr.split(',');
-rankArr = rankArr.split(',');
-ratingArr = ratingArr.split(',');
-
-for (var i = 0; i < hrNameArr.length; i++) {
+for (var i = 0; i < hrNoArrBySeoul.length; i++) {
     var html = "";
 
     html += '<tr class="gradeX">';
-    html += '<td>' + hrNoArr[i] + '</td>';
-    html += '<td>' + hrNameArr[i] + '</td>';
-    html += '<td>' + countryArr[i] + '</td>';
-    html += '<td>' + sexArr[i] + '</td>';
-    html += '<td>' + rcCntTArr[i] + '</td>';
-    html += '<td>' + rankArr[i] + '</td>';
-    html += '<td>' + ratingArr[i] + '</td>';
+    html += '<td>' + hrNoArrBySeoul[i] + '</td>';
+    html += '<td>' + hrNameArrBySeoul[i] + '</td>';
+    html += '<td>' + countryArrBySeoul[i] + '</td>';
+    html += '<td>' + sexArrBySeoul[i] + '</td>';
+    html += '<td>' + rcCntTArrBySeoul[i] + '</td>';
+    html += '<td>' + rankArrBySeoul[i] + '</td>';
+    html += '<td>' + ratingArrBySeoul[i] + '</td>';
     html += "</tr>";
 
     $("#horseInfoTotal").append(html);
