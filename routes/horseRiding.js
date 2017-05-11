@@ -45,7 +45,7 @@ function ajaxFunction_riding() {
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
-        console.log('[승마장] 송신 성공!');
+        console.log('[승마장] 송신 성공!' + new Date());
 
         parser.parseString(body, function (err, result) {
             // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
