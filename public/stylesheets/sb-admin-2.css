@@ -460,17 +460,17 @@ table.dataTable thead .sorting:after {
   border: 1px solid green;
 }
 .bg-sliver{
-  background-color: #e1dfdd;
+  background-color: #e1dfdd !important;
   color: #fff;;
   font-weight: 700;
 }
 .bg-gold{
-  background-color: goldenrod;
+  background-color: goldenrod !important;
   color: #fff;;
   font-weight: 700;
 }
 .bg-brown{
-  background-color: #b08c63;
+  background-color: #b08c63 !important;
   color: #fff;;
   font-weight: 700;
 }
