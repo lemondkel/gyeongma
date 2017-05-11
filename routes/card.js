@@ -50,7 +50,7 @@ function ajaxFunction_card() {
     var term = "4w";
 
     request({
-        url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet + '?bet_Type=' + bet_Type + '?term=' + term,
+        url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet + '&bet_Type=' + bet_Type + '&term=' + term,
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
