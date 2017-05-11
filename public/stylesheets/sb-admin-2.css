@@ -459,6 +459,21 @@ table.dataTable thead .sorting:after {
 .horse_img{
   border: 1px solid green;
 }
+.bg-sliver{
+  background-color: #e1dfdd;
+  color: #fff;;
+  font-weight: 700;
+}
+.bg-gold{
+  background-color: goldenrod;
+  color: #fff;;
+  font-weight: 700;
+}
+.bg-brown{
+  background-color: #b08c63;
+  color: #fff;;
+  font-weight: 700;
+}
 @media screen and (max-width: 767px) {
   label{
     width: 100%;
