@@ -14,6 +14,7 @@ var horseJockey = require('./routes/horseJockey');
 var horseInfo = require('./routes/horseInfo');
 var horseInfoTotal = require('./routes/horseInfoTotal');
 var horseRaceInfo = require('./routes/horseRaceInfo');
+var card = require('./routes/card');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('/horseJockey', horseJockey);
 app.use('/horseInfo', horseInfo);
 app.use('/horseInfoTotal', horseInfoTotal);
 app.use('/horseRaceInfo', horseRaceInfo);
+app.use('/card', card);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
