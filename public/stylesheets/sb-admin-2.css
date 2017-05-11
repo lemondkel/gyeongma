@@ -464,7 +464,7 @@ table.dataTable thead .sorting:after {
     width: 100%;
   }
   div.dataTables_filter input{
-    width:calc(100% - 50px);
+    width:calc(100% - 65px);
   }
   .panel-body{
     padding:15px 0 0 0;
