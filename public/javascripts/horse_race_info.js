@@ -16,7 +16,6 @@ $(function () {
     })
         .done(function (response) {
             var data = response.response.body.items.item;
-            console.log(data);
 
             for (var i = 0; i < data.length; i++) {
                 var html = "";
@@ -75,7 +74,6 @@ function Request() {
 var plot;
 
 function drawChart(date, hrNo, meetType) {
-    console.log(hrNo.toString());
     var url = '	http://kradata.kra.co.kr:8082/service/api37/getOpenDataList';
     var serviceKey = '71F43AB9FF7FE39BBF646CA49C4ABDAA2AAC21C14FDC33F223EF9EFB664AE9C2';
 
@@ -83,7 +81,6 @@ function drawChart(date, hrNo, meetType) {
         url: url + '?ServiceKey=' + serviceKey + "&rc_date=" + date + "&hr_no=" + hrNo + "&meet=" + meetType,
         dataType: "json"
     }).done(function (response) {
-        console.log(response);
         var data = response.response.body.items.item;
 
         var barOptions = {

@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
     } else {
         var result = JSON.stringify(data);
         result = result.toString().replace(/'/gi, '"');
-        console.log(result);
 
         res.render('horse_info_total', {
             data : result
