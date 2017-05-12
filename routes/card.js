@@ -7,37 +7,24 @@ var parser = xml2js.Parser();
 
 var url = '	http://kradata.kra.co.kr:8082/service/api1/getOpenDataList';
 var serviceKey = '5BCD3AA2122DA88C1856E16756AFF397214B4479BC747D0BEEAFF7E9FEF41';
-var hitRankArr = [];
-var acnoArr = [];
-var totPrchsCntArr = [];
-var totRtnCntArr = [];
-var totRtnHitRateArr = [];
+var data = [];
 
 ajaxFunction_card();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    if (hitRankArr.length === 0) {
+    if (data.length === 0) {
         ajaxFunction_card();
     } else {
         res.render('card', {
-            hitRankArr: hitRankArr,
-            acnoArr: acnoArr,
-            totPrchsCntArr: totPrchsCntArr,
-            totRtnCntArr: totRtnCntArr,
-            totRtnHitRateArr: totRtnHitRateArr
+            data: JSON.stringify(data)
         });
     }
 });
 
 cron.schedule('* * 4 * *', function () {
     console.log('[card]', 'starting a task every day / ' + new Date());
-
-    hitRankArr = [];
-    acnoArr = [];
-    totPrchsCntArr = [];
-    totRtnCntArr = [];
-    totRtnHitRateArr = [];
+    data = [];
 
     ajaxFunction_card();
 
@@ -54,23 +41,46 @@ function ajaxFunction_card() {
         method: "GET",
         dataType: "json"
     }, function (error, response, body) {
-        console.log('[카드] 송신 성공!' + new Date());
 
         parser.parseString(body, function (err, result) {
-            // console.log(JSON.stringify(result.response.body[0].items[0].item[0]));
             for (var i = 0; i < result.response.body[0].items[0].item.length; i++) {
-                var hitRank = result.response.body[0].items[0].item[i].hitRank;
-                var acno = result.response.body[0].items[0].item[i].acno;
-                var totPrchsCnt = result.response.body[0].items[0].item[i].totPrchsCnt;
-                var totRtnCnt = result.response.body[0].items[0].item[i].totRtnCnt;
-                var totRtnHitRate = result.response.body[0].items[0].item[i].totRtnHitRate;
-
-                hitRankArr.push(hitRank);
-                acnoArr.push(acno);
-                totPrchsCntArr.push(totPrchsCnt);
-                totRtnCntArr.push(totRtnCnt);
-                totRtnHitRateArr.push(totRtnHitRate);
+                result.response.body[0].items[0].item[i].meet = meet;
+                result.response.body[0].items[0].item[i].betType = bet_Type;
+                data.push(result.response.body[0].items[0].item[i]);
             }
+        });
+
+        meet = 2;
+        request({
+            url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet + '&bet_Type=' + bet_Type + '&term=' + term,
+            method: "GET",
+            dataType: "json"
+        }, function (error, response, body) {
+
+            parser.parseString(body, function (err, result) {
+                for (var i = 0; i < result.response.body[0].items[0].item.length; i++) {
+                    result.response.body[0].items[0].item[i].meet = meet;
+                    result.response.body[0].items[0].item[i].betType = bet_Type;
+                    data.push(result.response.body[0].items[0].item[i]);
+                }
+            });
+
+            meet = 3;
+            request({
+                url: url + '?ServiceKey=' + serviceKey + '&meet=' + meet + '&bet_Type=' + bet_Type + '&term=' + term,
+                method: "GET",
+                dataType: "json"
+            }, function (error, response, body) {
+                console.log("[카드] 송신 성공!" + new Date());
+
+                parser.parseString(body, function (err, result) {
+                    for (var i = 0; i < result.response.body[0].items[0].item.length; i++) {
+                        result.response.body[0].items[0].item[i].meet = meet;
+                        result.response.body[0].items[0].item[i].betType = bet_Type;
+                        data.push(result.response.body[0].items[0].item[i]);
+                    }
+                });
+            });
         });
     });
 }

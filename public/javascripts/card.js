@@ -1,25 +1,48 @@
-hitRankArr = hitRankArr.split(',');
-acnoArr = acnoArr.split(',');
-totPrchsCntArr = totPrchsCntArr.split(',');
-totRtnCntArr = totRtnCntArr.split(',');
-totRtnHitRateArr = totRtnHitRateArr.split(',');
+data = JSON.parse(data);
 
-for (var i = 0; i < hitRankArr.length; i++) {
-    var html = "";
-    var target = $('#betType1_meet1');
+console.log(data);
 
-    html += '<tr class="gradeX">';
-    html += '<td>' + hitRankArr[i] + '</td>';
-    html += '<td>' + acnoArr[i] + '</td>';
-    html += '<td>' + totPrchsCntArr[i] + '</td>';
-    html += '<td>' + totRtnCntArr[i] + '</td>';
-    html += '<td>' + totRtnHitRateArr[i] + '</td>';
-    html += '</tr>';
+for (var i = 0; i < data.length; i++) {
+    if (data[i].meet === 1) {
+        var html = "";
+        var target = $('#card-table');
 
-    target.children('tbody').append(html);
+        html += '<tr class="gradeX">';
+        html += '<td>' + data[i].hitRank + '</td>';
+        html += '<td>' + data[i].acno + '</td>';
+        html += '<td>' + data[i].totPrchsCnt + '</td>';
+        html += '<td>' + data[i].totRtnCnt + '</td>';
+        html += '<td>' + data[i].totRtnHitRate + '</td>';
+        html += '</tr>';
+
+        target.children('tbody').append(html);
+    }
 }
 
 target.DataTable({
     responsive: true,
-    paging : false
+    paging: false,
+    searching: false
+});
+
+$('#card-place').change(function () {
+    var target = $('#card-table');
+
+    target.children('tbody').empty();
+
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].meet === parseInt($('#card-place option:selected').val())) {
+            var html = "";
+
+            html += '<tr class="gradeX">';
+            html += '<td>' + data[i].hitRank + '</td>';
+            html += '<td>' + data[i].acno + '</td>';
+            html += '<td>' + data[i].totPrchsCnt + '</td>';
+            html += '<td>' + data[i].totRtnCnt + '</td>';
+            html += '<td>' + data[i].totRtnHitRate + '</td>';
+            html += '</tr>';
+
+            target.children('tbody').append(html);
+        }
+    }
 });
