@@ -3,6 +3,8 @@
 <br>
 공공데이터 API를 활용한 소프트웨어 공모전 출품작 (by esyeon, l2jong)
 <br>
+경마정보 조회 반응형 웹서비스
+<br>
 <br>
 <b>OS</b>: Linux
 <br>
